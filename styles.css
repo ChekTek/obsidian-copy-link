@@ -1,0 +1,27 @@
+.copy-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin-inline-start: 0.15em;
+  border-radius: var(--radius-s);
+  /* Match the gray external-link arrow, not the purple link text. */
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.copy-link-button:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+
+.copy-link-button--copied {
+  color: var(--text-success);
+}
+
+/* Match the size of the external-link icon. */
+.copy-link-button svg {
+  width: 0.8em;
+  height: 0.8em;
+}

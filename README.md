@@ -4,7 +4,7 @@ An [Obsidian](https://obsidian.md) plugin that adds a small copy button next to
 links, so you can copy a URL to your clipboard with a single click — much like
 the copy button next to code blocks.
 
-![Copy button next to a link](#)
+![Copy button next to a link](copy-link.png)
 
 ## Features
 

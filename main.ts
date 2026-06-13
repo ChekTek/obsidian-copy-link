@@ -32,7 +32,7 @@ function urlFromMatch(match: RegExpExecArray): string {
 
 /** Build a small clickable copy icon that writes `value` to the clipboard. */
 function createCopyButton(value: string): HTMLElement {
-  const btn = document.createElement("span");
+  const btn = activeDocument.createElement("span");
   btn.className = "copy-link-button";
   btn.setAttribute("role", "button");
   btn.setAttribute("aria-label", "Copy link");

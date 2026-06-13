@@ -1,21 +1,24 @@
 # Copy Link Button
 
 An [Obsidian](https://obsidian.md) plugin that adds a small copy button next to
-links, so you can copy a URL to your clipboard with a single click — much like
-the copy button next to code blocks.
+links and images, so you can copy their target to your clipboard with a single
+click — much like the copy button next to code blocks.
 
 ![Copy button next to a link](copy-link.png)
 
 ## Features
 
-- Adds a copy button next to **markdown links** (`[text](https://…)`) and
-  **bare URLs** (`https://…`).
+- Adds a copy button next to **markdown links** (`[text](https://…)`),
+  **bare URLs** (`https://…`), and **wikilinks** (`[[Note|Alias]]`).
+- Supports **internal embeds** (`![[image.png]]`) and **markdown images**
+  (`![alt](https://…)`) with a floating copy button for rendered images.
 - Works in both **editing / Live Preview** and **reading view**.
-- Clicking the button copies the URL and briefly shows a checkmark.
+- Clicking the button copies the URL, wikilink, or image target and briefly
+  shows a checkmark.
+- Buttons are always visible by default, with a setting to only show them while
+  holding Ctrl, Cmd, Alt, or Shift.
 - Styled with Obsidian theme variables, so it matches the external-link icon in
   light and dark themes.
-
-Wikilinks (`[[Note]]`) are intentionally left alone.
 
 ## Installation
 

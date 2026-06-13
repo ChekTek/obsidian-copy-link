@@ -70,7 +70,7 @@ function valueFromMatch(match: RegExpExecArray): string {
 
 /** Build a small clickable copy icon that writes `value` to the clipboard. */
 function createCopyButton(value: string, label = "Copy link"): HTMLElement {
-  const btn = document.createElement("span");
+  const btn = activeDocument.createElement("span");
   btn.className = "copy-link-button";
   btn.setAttribute("role", "button");
   btn.setAttribute("aria-label", label);
@@ -176,7 +176,7 @@ function addFloatingImageButton(img: HTMLImageElement): void {
     return;
   }
 
-  const wrapper = document.createElement("span");
+  const wrapper = img.ownerDocument.createElement("span");
   wrapper.addClass("copy-link-image-container");
   const parent = img.parentNode;
   if (!parent) return;
@@ -275,14 +275,14 @@ export default class CopyLinkPlugin extends Plugin {
       this.updateHotkeyState(evt)
     );
     this.registerDomEvent(window, "blur", () => this.clearHotkeyState());
-    this.registerDomEvent(document, "mouseover", (evt) =>
+    this.registerDomEvent(activeDocument, "mouseover", (evt) =>
       this.handlePreviewImageMouseOver(evt)
     );
-    this.registerDomEvent(document, "mouseout", (evt) =>
+    this.registerDomEvent(activeDocument, "mouseout", (evt) =>
       this.handlePreviewImageMouseOut(evt)
     );
     this.registerDomEvent(
-      document,
+      activeDocument,
       "scroll",
       () => this.removePreviewImageButton(),
       true
@@ -290,8 +290,8 @@ export default class CopyLinkPlugin extends Plugin {
     this.registerDomEvent(window, "scroll", () => this.removePreviewImageButton());
     this.registerDomEvent(window, "resize", () => this.removePreviewImageButton());
     this.register(() => {
-      document.body.removeClass(HOTKEY_ENABLED_CLASS);
-      document.body.removeClass(HOTKEY_ACTIVE_CLASS);
+      activeDocument.body.removeClass(HOTKEY_ENABLED_CLASS);
+      activeDocument.body.removeClass(HOTKEY_ACTIVE_CLASS);
       this.removePreviewImageButton();
     });
 
@@ -331,20 +331,20 @@ export default class CopyLinkPlugin extends Plugin {
 
   applyVisibilityHotkey() {
     const enabled = this.settings.visibilityHotkey !== "always";
-    document.body.classList.toggle(HOTKEY_ENABLED_CLASS, enabled);
+    activeDocument.body.classList.toggle(HOTKEY_ENABLED_CLASS, enabled);
     if (!enabled) this.clearHotkeyState();
   }
 
   updateHotkeyState(evt: KeyboardEvent) {
     if (this.settings.visibilityHotkey === "always") return;
-    document.body.classList.toggle(
+    activeDocument.body.classList.toggle(
       HOTKEY_ACTIVE_CLASS,
       this.isHotkeyPressed(evt)
     );
   }
 
   clearHotkeyState() {
-    document.body.removeClass(HOTKEY_ACTIVE_CLASS);
+    activeDocument.body.removeClass(HOTKEY_ACTIVE_CLASS);
   }
 
   isHotkeyPressed(evt: KeyboardEvent): boolean {
@@ -426,7 +426,7 @@ export default class CopyLinkPlugin extends Plugin {
       this.schedulePreviewImageButtonRemoval();
     });
 
-    document.body.appendChild(btn);
+    img.ownerDocument.body.appendChild(btn);
     this.previewImageButton = btn;
     this.previewImageTarget = img;
     this.previewImageValue = value;

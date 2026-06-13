@@ -8,7 +8,8 @@
   /* Match the gray external-link arrow, not the purple link text. */
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    opacity 0.1s ease-in-out;
 }
 
 .copy-link-button:hover {
@@ -24,4 +25,36 @@
 .copy-link-button svg {
   width: 0.8em;
   height: 0.8em;
+}
+
+body.copy-link-button-hotkey-enabled .copy-link-button {
+  display: none;
+}
+
+body.copy-link-button-hotkey-enabled.copy-link-button-hotkey-active
+  .copy-link-button {
+  display: inline-flex;
+}
+
+.copy-link-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.copy-link-image-button {
+  position: absolute;
+  inset-block-start: var(--size-2-2);
+  inset-inline-start: var(--size-2-2);
+  z-index: 1;
+  margin-inline-start: 0;
+  padding: var(--size-2-1);
+  background-color: var(--background-primary);
+  box-shadow: var(--shadow-s);
+}
+
+.copy-link-preview-image-button {
+  position: fixed;
+  inset-block-start: auto;
+  inset-inline-start: auto;
+  z-index: var(--layer-popover);
 }
